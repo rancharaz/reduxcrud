@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+label[data-shrink=false]+.MuiInputBase-formControl .css-1x51dt5-MuiInputBase-input-MuiInput-input{
+  color: transparent;
+}
+label[data-shrink=false]+.MuiInputBase-formControl .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  width: 25rem;
+}
+.css-1x51dt5-MuiInputBase-input-MuiInput-input:focus{
+  width: 25rem !important;
+  outline: 0 !important;
+
+}
+.css-1x51dt5-MuiInputBase-input-MuiInput-input{
+  width: 25rem !important;
+}
