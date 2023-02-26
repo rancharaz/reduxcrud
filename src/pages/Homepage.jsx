@@ -54,7 +54,7 @@ const Homepage = () => {
 
     const classes = useStyles(); //style dispatcher
     let dispatch = useDispatch(); //dispatch the functions
-    let navigate = useNavigate();
+    let navigate = useNavigate(); //hook to go to page
 
     const { employees } = useSelector(state => state.employees) //getting the data
     //getting the function to run

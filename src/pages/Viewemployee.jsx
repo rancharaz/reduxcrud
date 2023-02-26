@@ -19,6 +19,7 @@ const Viewemployee = () => {
     //getting employee value
     const navigate = useNavigate();
     let dispatch = useDispatch();
+    /* put data into variable */
     const [state, setState] = useState({
         firstname: "",
         lastname: "",
@@ -84,6 +85,7 @@ const Viewemployee = () => {
                 </Table>
             </TableContainer>
             <ButtonGroup variant="contained" style={{ marginTop: "2rem" }} aria-label="outlined primary button group">
+
                 <Button color="success" type='submit' onClick={() => navigate("/")}>Back</Button>
             </ButtonGroup>
         </Container>
