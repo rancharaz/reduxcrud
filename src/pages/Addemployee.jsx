@@ -5,12 +5,20 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addEmployees } from './../redux/actions';
+import { addEmployees } from '../redux/actions/actions';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { Stack } from '@mui/material';
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Addemployee = () => {
     //getting employee value
     const navigate = useNavigate();
     let dispatch = useDispatch();
+
+    /* creating state to add */
     const [state, setState] = useState({
         firstname: "",
         lastname: "",
@@ -78,6 +86,9 @@ const Addemployee = () => {
                     <TextField type='date' id="standard-basic" min="1900-01-01" label="Date joined" value={joindate} name="joindate" variant="standard" onChange={handleInputChange} />
                 </div>
             </Box>
+
+
+
             {/* checking error */}
             {
                 error && <h3 style={{ color: "red" }}>{error}</h3>

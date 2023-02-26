@@ -1,4 +1,4 @@
-import * as types from "./actionType";
+import * as types from "../actions/actionType";
 
 //initiate initial state of employees
 const initialState = {

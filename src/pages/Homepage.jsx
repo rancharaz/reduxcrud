@@ -9,13 +9,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { makeStyles } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'; //to dispatch actions
-import { deleteEmployees, loadEmployees } from './../redux/actions';
+import { deleteEmployees, loadEmployees } from '../redux/actions/actions';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import moment from 'moment/moment';
+import { Container } from '@mui/material';
+
+
 //elements for material table
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -51,6 +55,7 @@ const Homepage = () => {
     const classes = useStyles(); //style dispatcher
     let dispatch = useDispatch(); //dispatch the functions
     let navigate = useNavigate();
+
     const { employees } = useSelector(state => state.employees) //getting the data
     //getting the function to run
     useEffect(() => {
@@ -72,53 +77,57 @@ const Homepage = () => {
                 </ButtonGroup>
 
             </div>
+            <Container>
+                <TableContainer  >
+                    <Table className={classes.table} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                {/* heading table center */}
+                                <StyledTableCell>Id</StyledTableCell>
+                                <StyledTableCell align="center">Firstname</StyledTableCell>
+                                <StyledTableCell align="center">Last name</StyledTableCell>
+                                <StyledTableCell align="center">Department</StyledTableCell>
+                                <StyledTableCell align="center">Title</StyledTableCell>
+                                <StyledTableCell align="center">Email</StyledTableCell>
+                                <StyledTableCell align="center">Salary</StyledTableCell>
+                                <StyledTableCell align="center">Birthdate</StyledTableCell>
+                                <StyledTableCell align="center">Joindate</StyledTableCell>
+                                <StyledTableCell align="center">Actions</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
 
-            <TableContainer  >
-                <Table className={classes.table} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            {/* heading table center */}
-                            <StyledTableCell>Id</StyledTableCell>
-                            <StyledTableCell align="center">Firstname</StyledTableCell>
-                            <StyledTableCell align="center">Last name</StyledTableCell>
-                            <StyledTableCell align="center">Department</StyledTableCell>
-                            <StyledTableCell align="center">Title</StyledTableCell>
-                            <StyledTableCell align="center">Email</StyledTableCell>
-                            <StyledTableCell align="center">Salary</StyledTableCell>
-                            <StyledTableCell align="center">Birthdate</StyledTableCell>
-                            <StyledTableCell align="center">Joindate</StyledTableCell>
-                            <StyledTableCell align="center">Actions</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {/* looping through employees to display data */}
-                        {employees && employees.map((employee) => (
-                            <StyledTableRow key={employee.id}>
-                                <StyledTableCell component="th" scope="row">
-                                    {employee.id}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">{employee.firstname}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.lastname}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.dept}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.title}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.email}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.salary}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.birthdate}</StyledTableCell>
-                                <StyledTableCell align="right">{employee.joindate}</StyledTableCell>
-                                <StyledTableCell align="right">
-                                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                        <Button color='success' onClick={() => navigate(`/view-employee/${employee.id}`)}><VisibilityIcon /></Button>
-                                        <Button color='primary' onClick={() => navigate(`/edit-employee/${employee.id}`)}><EditIcon /></Button>
-                                        <Button onClick={() => handleDelete(employee.id)} color='error'><HighlightOffIcon /></Button> {/* delete button */}
-                                    </ButtonGroup>
-                                </StyledTableCell>
+                        <TableBody>
+                            {/* looping through employees to display data */}
+                            {employees && employees.map((employee) => (
+                                <StyledTableRow key={employee.id}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {employee.id}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="center">{employee.firstname}</StyledTableCell>
+                                    <StyledTableCell align="center">{employee.lastname}</StyledTableCell>
+                                    <StyledTableCell align="center">{employee.dept}</StyledTableCell>
+                                    <StyledTableCell align="center">{employee.title}</StyledTableCell>
+                                    <StyledTableCell align="center">{employee.email}</StyledTableCell>
+                                    <StyledTableCell align="center">{employee.salary}</StyledTableCell>
+                                    <StyledTableCell align="center">{moment(employee.birthdate).format('DD/MM/YYYY')}</StyledTableCell>
+                                    <StyledTableCell align="center">{moment(employee.joindate).format('DD/MM/YYYY')}</StyledTableCell>
+
+                                    <StyledTableCell align="center">
+                                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                                            <Button color='success' onClick={() => navigate(`/view-employee/${employee.id}`)}><VisibilityIcon /></Button>
+                                            <Button color='primary' onClick={() => navigate(`/edit-employee/${employee.id}`)}><EditIcon /></Button>
+                                            <Button onClick={() => handleDelete(employee.id)} color='error'><HighlightOffIcon /></Button> {/* delete button */}
+                                        </ButtonGroup>
+                                    </StyledTableCell>
 
 
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Container>
+
         </div>
 
     )
