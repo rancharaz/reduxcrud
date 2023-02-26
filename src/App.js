@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage';
 import Addemployee from './pages/Addemployee';
 import Editemployee from './pages/Editemployee';
 import Viewemployee from './pages/Viewemployee';
+import Errorpage from './pages/Errorpage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/add-employee" element={<Addemployee />} />
         <Route path="/edit-employee/:id" element={<Editemployee />} />
         <Route path="/view-employee/:id" element={<Viewemployee />} />
+        <Route path="*" element={<Errorpage />} />
 
       </Routes>
     </div>
